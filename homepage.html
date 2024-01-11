@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chord Generator</title>
+    <link href="home.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="controller.js"></script>
+</head>
+<body>
+    <div id="header">
+        <h1>Chord Progression Generator</h1>
+    </div>    
+
+    <div id="generator-section">
+    <label for="key">Select a Root:</label>
+    <select id="key" name="key">
+        <option value="default" disabled selected>Select a Key</option>
+        <option value="">Any Root</option>
+        <option value="c">C</option>
+        <option value="csharp">C#</option>
+        <option value="d">D</option>
+        <option value="dsharp">D#</option>
+        <option value="e">E</option>
+        <option value="f">F</option>
+        <option value="fsharp">F#</option>
+        <option value="g">G</option>
+        <option value="gsharp">G#</option>
+        <option value="a">A</option>
+        <option value="asharp">A#</option>
+        <option value="b">B</option>
+
+    </select>
+
+    <label for="dispAmount">Select Amount to Display:</label>
+    <select id="dispAmount" name="dispAmount">
+        <option value="default" disabled selected>Select a Number</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+    </select>
+
+
+
+    <button id="generateButton">Generate</button>
+    </div>
+
+    <div id="result-section">
+        <div id="result"></div>
+    </div>
+    <div id="history-section">
+        <div id="history"></div>
+    </div>
+</body>
+</html>
