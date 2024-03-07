@@ -25,49 +25,39 @@ document.addEventListener('DOMContentLoaded', function () {
                         resultDiv.innerHTML = '<p>Error fetching data</p>';
                     });
 
-                function displayChords(chords) {
-                    resultDiv.innerHTML = '<h3>Generated Chords:</h3>';
-                    const allChords = [];
-                    for (const note in chords) {
-                        if (chords.hasOwnProperty(note)) {
-                            for (const chordType in chords[note]) {
-                                if (chords[note].hasOwnProperty(chordType)) {
-                                    const chordName = `${note} ${chordType}`;
-                                    allChords.push(chordName);
+                    function displayChords(chords) {
+                        const allChords = [];
+                        for (const note in chords) {
+                            if (chords.hasOwnProperty(note)) {
+                                for (const chordType in chords[note]) {
+                                    if (chords[note].hasOwnProperty(chordType)) {
+                                        const chordName = `${note} ${chordType}`;
+                                        allChords.push(chordName);
+                                    }
                                 }
                             }
                         }
+                    
+                        shuffleArray(allChords);
+                    
+                        const numChordsToDisplay = Math.min(allChords.length, numChords);
+                        for (let i = 0; i < numChordsToDisplay; i++) {
+                            const chordElement = document.createElement('p');
+                            chordElement.textContent = allChords[i];
+                            resultDiv.appendChild(chordElement);
+                        }
+                    
+                        addToHistory(allChords.slice(0, numChordsToDisplay));
                     }
 
-                    shuffleArray(allChords);
-
-                    const numChordsToDisplay = Math.min(allChords.length, numChords);
-                    for (let i = 0; i < numChordsToDisplay; i++) {
-                        const chordElement = document.createElement('p');
-                        chordElement.textContent = allChords[i];
-                        resultDiv.appendChild(chordElement);
-                    }
-
-                    addToHistory(allChords.slice(0, numChordsToDisplay));
-                }
-
-                function addToHistory(chords) {
-                    historyContainer.innerHTML += '<h3>Recent Progression:</h3>';
-                    chords.forEach((chord, index) => {
-                        const chordElement = document.createElement('p');
-                        chordElement.textContent = chord;
-                        historyContainer.appendChild(chordElement);
-                    });
-
-                    // Corrected axios.post call
-                    axios.post('/api/history', { chords })
-                        .then(response => {
-                            console.log('Chord progression saved:', response.data);
-                        })
-                        .catch(error => {
-                            console.error('Error saving chord progression:', error);
+                    function addToHistory(chords) {
+                        historyContainer.innerHTML += '<h3>Recent Progression:</h3>';
+                        chords.forEach((chord, index) => {
+                            const chordElement = document.createElement('p');
+                            chordElement.textContent = chord;
+                            historyContainer.appendChild(chordElement);
                         });
-                }
+                    }
 
                 function shuffleArray(array) {
                     for (let i = array.length - 1; i > 0; i--) {
