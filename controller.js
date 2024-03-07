@@ -58,6 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         chordElement.textContent = chord;
                         historyContainer.appendChild(chordElement);
                     });
+
+                    // Corrected axios.post call
                     axios.post('/api/history', { chords })
                         .then(response => {
                             console.log('Chord progression saved:', response.data);

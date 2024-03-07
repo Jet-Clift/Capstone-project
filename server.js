@@ -7,10 +7,10 @@ const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
-app.get('/chords/:key', async (req, res) => {
-    const key = req.params.key;
+app.get('/chords/:selectedKey', async (req, res) => {
+    const selectedKey = req.params.selectedKey;
     try {
-        const response = await axios.get(`https://piano-chords.p.rapidapi.com/chords/${key}`, {
+        const response = await axios.get(`https://piano-chords.p.rapidapi.com/chords/${selectedKey}`, {
             headers: {
                 'X-RapidAPI-Key': 'f5f910f28amsh351932cc806dd11p1f05a4jsn7c634d9b743a',
                 'X-RapidAPI-Host': 'piano-chords.p.rapidapi.com'
@@ -35,5 +35,5 @@ app.post('/api/history', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log('Server is running on port 3000');
 });
